@@ -7,3 +7,53 @@ spring:
     url: jdbc:mysql://localhost:3306/test?useSSH=false&serverTimezone=GMT%2B8
     username: root
     password: root
+  mail:
+    username:
+    password:
+
+# JWT配置
+jwt:
+  # 密钥
+  secret: ${JWT_SECRET:JWTSecret}
+  # header key
+  tokenHeader: ${JWT_TOKEN_HEADER:Authorization}
+  # 前缀字符
+  tokenPrefix: ${JWT_TOKEN_PREFIX:Sans-}
+  # 过期时间(秒) 1天后过期=86400 7天后过期=604800
+  expiration: ${JWT_EXPIRATION:86400}
+  # 不需要认证的接口
+  antMatchers: ${JWT_ANTMATCHERS:/index/**,/login/**,/hello/**,/updateStatus}
+
+# mybatis-plus配置
+mybatis-plus:
+  # xml扫描，多个目录用逗号或分号分隔(关联mapper与xml文件)
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      #主键类型 AUTO——"数据库ID自增" INPUT——"用户输入ID" ID_WORKER——"全局唯一ID(数字类型唯一ID)" UUID——"全局唯一ID UUID";
+      id-type: auto
+  configuration:
+    # 开启数据库列名到Java属性驼峰命名的映射
+    map-underscore-to-camel-case: true
+    # 查询数据为空时字段返回null
+    call-setters-on-nulls: true
+    # 打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# ldap配置
+ldap:
+  tokenUrl: ${LDAP_TOKEN_URL:xxx}
+  eidClass: ${LDAP_EIDCLASS:xxx}
+  user:
+    appSecretId: ${LDAP_USER_APPSECRETID:xxx}
+    appSecretKey: ${LDAP_USER_APPSECRETKEY:xxx}
+    endPoint: ${LDAP_USER_ENDPOINT:xxx}
+  dept:
+    appSecretId: ${LDAP_DEPT_APPSECRETID:xxx}
+    appSecretKey: ${LDAP_DEPT_APPSECRETKEY:xxx}
+    endPoint: ${LDAP_DEPT_ENDPOINT:xxx}
+
+# jasypt加密密钥
+jasypt:
+  encryptor:
+    password: 4G4tN0z2v<u*Wm0

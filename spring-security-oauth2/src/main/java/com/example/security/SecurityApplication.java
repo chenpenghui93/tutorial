@@ -1,13 +1,13 @@
-package com.example.redissession;
+package com.example.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RedisSessionApplication {
+public class SecurityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisSessionApplication.class, args);
+        SpringApplication.run(SecurityApplication.class, args);
     }
 
 }
