@@ -29,4 +29,5 @@ hs_err_pid*
 /redis-session/mvnw
 /redis-session/mvnw.cmd
 /redis-session/target/
+/spring-security-oauth2/target/
 
