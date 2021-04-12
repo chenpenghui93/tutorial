@@ -25,9 +25,13 @@ hs_err_pid*
 /java-basic/mvnw
 /java-basic/mvnw.cmd
 /java-basic/target/
+
 /redis-session/.mvn/
 /redis-session/mvnw
 /redis-session/mvnw.cmd
 /redis-session/target/
+
 /spring-security-oauth2/target/
 
+/algothrim/target/
+/algothrim/algothrim.iml
