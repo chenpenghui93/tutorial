@@ -4,10 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
@@ -61,4 +64,19 @@ public class TaskController {
         }
         return "ok";
     }
+
+    @GetMapping("/taskTest")
+    public String task1Execute(){
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        executorService.execute(()->{
+            System.out.println("异步线程开启...");
+            RequestContextHolder.setRequestAttributes(requestAttributes);
+            System.out.println("异步线程结束...");
+        });
+
+        return "ok";
+    }
+
+
 }
