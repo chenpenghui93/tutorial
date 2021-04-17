@@ -17,9 +17,10 @@
     <description>Java Tutorial</description>
 
     <modules>
-        <module>java-basic</module>
-        <module>redis-session</module>
-        <module>spring-security-oauth2</module>
+        <module>tutorial-java-basic</module>
+        <module>tutorial-redis</module>
+        <module>tutorial-spring-security</module>
+        <module>tutorial-algorithm</module>
     </modules>
 
     <properties>
