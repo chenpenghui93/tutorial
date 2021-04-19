@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.dom4j;
+package com.example.javabasic.sample;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -22,7 +22,7 @@ import java.net.URL;
  * @author cph
  * @date 2019/11/8
  */
-public class Foo {
+public class ParsingXmlTest {
 
     public static void main(String[] args) throws MalformedURLException, DocumentException {
         URL url = new URL("http://10.19.40.110:8080/wsdemo/services/CustMgrService?wsdl");
