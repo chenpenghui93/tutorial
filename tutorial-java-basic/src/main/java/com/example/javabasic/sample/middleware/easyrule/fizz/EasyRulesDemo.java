@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.easyrule.fizz;
+package com.example.javabasic.sample.middleware.easyrule.fizz;
 
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;

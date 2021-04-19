@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.easyrule.helloworld;
+package com.example.javabasic.sample.middleware.easyrule.helloworld;
 
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
