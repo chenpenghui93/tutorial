@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.async;
+package com.example.javabasic.sample.concurrent.async;
 
 import org.springframework.core.task.TaskDecorator;
 import org.springframework.web.context.request.RequestAttributes;
