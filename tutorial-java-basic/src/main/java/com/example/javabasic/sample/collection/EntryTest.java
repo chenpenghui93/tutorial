@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.entry;
+package com.example.javabasic.sample.collection;
 
 import java.util.HashMap;
 import java.util.Iterator;
