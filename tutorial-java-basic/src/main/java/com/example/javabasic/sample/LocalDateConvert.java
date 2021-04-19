@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.datetime;
+package com.example.javabasic.sample;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,7 @@ import java.util.TimeZone;
  * @author cph
  * @date 2019/6/28
  */
-public class ConvertDateTime {
+public class LocalDateConvert {
     public static void main(String[] args) {
         date2LocalDate();
         localDate2Date();
