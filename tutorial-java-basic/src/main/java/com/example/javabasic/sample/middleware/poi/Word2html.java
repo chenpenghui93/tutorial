@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.poi;
+package com.example.javabasic.sample.middleware.poi;
 
 import fr.opensagres.poi.xwpf.converter.core.BasicURIResolver;
 import fr.opensagres.poi.xwpf.converter.core.FileImageExtractor;

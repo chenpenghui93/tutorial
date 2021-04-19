@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.annotation;
+package com.example.javabasic.sample.annotation.conditional;
 
 /**
  * @author chenpenghui
