@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread;
+package com.example.javabasic.sample.concurrent;
 
 import java.util.concurrent.Semaphore;
 
@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
  * @version 1.0
  * @date 2019/1/6
  */
-public class CustomCheckWindow {
+public class SemaphoreTest {
     public static void main(String[] args) {
         Semaphore semaphore = new Semaphore(3);
 

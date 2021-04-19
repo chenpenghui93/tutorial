@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread;
+package com.example.javabasic.sample.concurrent;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread;
+package com.example.javabasic.sample.concurrent.volatility;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;

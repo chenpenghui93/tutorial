@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread;
+package com.example.javabasic.sample.concurrent.volatility;
 
 /**
  * 反例，不要这么做！

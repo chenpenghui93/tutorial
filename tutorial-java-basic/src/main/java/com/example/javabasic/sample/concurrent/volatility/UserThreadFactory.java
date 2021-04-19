@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread;
+package com.example.javabasic.sample.concurrent.volatility;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

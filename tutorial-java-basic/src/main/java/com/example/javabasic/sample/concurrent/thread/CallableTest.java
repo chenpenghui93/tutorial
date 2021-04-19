@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread.demo;
+package com.example.javabasic.sample.concurrent.thread;
 
 import java.util.ArrayList;
 import java.util.List;

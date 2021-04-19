@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread.demo;
+package com.example.javabasic.sample.concurrent.thread;
 
 /**
  * 继承Thread类实现多线程，覆写run方法

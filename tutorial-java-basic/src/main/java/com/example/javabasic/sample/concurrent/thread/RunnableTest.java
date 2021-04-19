@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.thread.demo;
+package com.example.javabasic.sample.concurrent.thread;
 
 /**
  * 实现Runnable接口方式，覆写run方法
