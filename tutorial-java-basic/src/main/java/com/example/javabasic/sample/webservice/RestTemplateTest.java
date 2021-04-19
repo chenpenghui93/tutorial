@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.webservice.resttemplate;
+package com.example.javabasic.sample.webservice;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @author cph
  * @date 2019/6/4
  */
-public class RestTemplateSample {
+public class RestTemplateTest {
     public static void main(String[] args) {
 //        getForEntityNoHeader();
 //        getForEntityWithHeader();
