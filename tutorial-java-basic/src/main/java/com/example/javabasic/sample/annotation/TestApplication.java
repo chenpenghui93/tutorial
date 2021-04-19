@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.annotation.conditional;
+package com.example.javabasic.sample.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.annotation.conditional;
+package com.example.javabasic.sample.annotation;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
