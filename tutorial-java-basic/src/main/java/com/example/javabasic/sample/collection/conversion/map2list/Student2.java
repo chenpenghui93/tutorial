@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.conversion.map2list;
+package com.example.javabasic.sample.collection.conversion.map2list;
 
 /**
  * @Author cph

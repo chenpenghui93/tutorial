@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.conversion.xml2obj;
+package com.example.javabasic.sample.collection.conversion.xml2obj;
 
 /**
  * @author cph
