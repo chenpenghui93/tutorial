@@ -1,10 +1,11 @@
 package com.example.javabasic.sample.concurrent;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 /**
- * 警示代码
+ * CountDownLatch 同步工具类，允许一个或多个线程一直等待，直到其它线程的操作执行完后再执行
+ * 通过计数器实现，计数器的初始值为线程数量，每当一个线程完成了自己的任务后，计数器值减1；当计数器值为0时，表示所有线程已完成任务，然后在
+ * 闭锁上等待的线程就可以恢复执行任务
  *
  * @author cph
  * @version 1.0
@@ -13,41 +14,40 @@ import java.util.concurrent.TimeUnit;
 public class CountDownLatchTest {
 
     public static void main(String[] args) {
-        CountDownLatch count = new CountDownLatch(3);
-        Thread thread1 = new TranslateThread("1st content", count);
-        Thread thread2 = new TranslateThread("2st content", count);
-        Thread thread3 = new TranslateThread("3st content", count);
 
-        thread1.start();
-        thread2.start();
-        thread3.start();
+        final CountDownLatch latch = new CountDownLatch(2);
+
+        new Thread(() -> {
+            try {
+                System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
+                Thread.sleep(2000L);
+                System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
+                latch.countDown();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
+                Thread.sleep(2000L);
+                System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
+                latch.countDown();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
         try {
-            count.await(10, TimeUnit.SECONDS);
-        } catch (Exception e) {
+            System.out.println("等待" + latch.getCount() + "个子线程执行...");
+            latch.await();
+            System.out.println("子线程执行完毕");
+            System.out.println("继续执行主线程");
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("所有线程执行完成");
 
     }
-}
 
-class TranslateThread extends Thread {
-    private String content;
-    private final CountDownLatch count;
-
-    public TranslateThread(String content, CountDownLatch count) {
-        this.content = content;
-        this.count = count;
-    }
-
-    @Override
-    public void run() {
-        if (Math.random() > 0.5) {
-            throw new RuntimeException("原文存在非法字符！");
-        }
-
-        System.out.println(content + " 的翻译已经完成，译文是。。。");
-        count.countDown();
-    }
 }
