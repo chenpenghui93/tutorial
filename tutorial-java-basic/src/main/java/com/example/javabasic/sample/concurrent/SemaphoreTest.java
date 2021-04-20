@@ -4,6 +4,8 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Semaphore 信号量，用于接口限流，控制并发数量
+ * 实现原理：
+ * 基于AQS的共享锁实现
  *
  * @author cph
  * @version 1.0
