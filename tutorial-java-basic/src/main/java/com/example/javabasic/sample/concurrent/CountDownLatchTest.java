@@ -22,9 +22,13 @@ public class CountDownLatchTest {
                 System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
                 Thread.sleep(2000L);
                 System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
-                latch.countDown();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally {
+                if (latch != null) {
+                    // 子线程执行结束时调用，通知主线程
+                    latch.countDown();
+                }
             }
         }).start();
 
@@ -33,14 +37,19 @@ public class CountDownLatchTest {
                 System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
                 Thread.sleep(2000L);
                 System.out.println("子线程" + Thread.currentThread().getName() + "执行完毕");
-                latch.countDown();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally {
+                if (latch != null) {
+                    // 子线程执行结束时调用，通知主线程
+                    latch.countDown();
+                }
             }
         }).start();
 
         try {
             System.out.println("等待" + latch.getCount() + "个子线程执行...");
+            // 子线程启动完毕后立即调用，主线程在闭锁上等待
             latch.await();
             System.out.println("子线程执行完毕");
             System.out.println("继续执行主线程");
