@@ -1,13 +1,13 @@
-package com.example.javabasic.sample.concurrent.lock;
+package com.example.javabasic.sample.concurrent.deadlock;
 
 /**
  * https://mp.weixin.qq.com/s/Vtqf72-15M8Uditn82bC0g
  * 死锁：一组互相竞争资源的线程因互相等待，导致“永久”阻塞的现象
- * 死锁四个条件：
+ * 死锁四个条件及如何防止死锁：
  * 1、互斥
- * 2、占有且等待
- * 3、不可抢占
- * 4、循环等待
+ * 2、占有且等待————一次性申请所有资源
+ * 3、不可抢占————使用Lock代替Synchronized
+ * 4、循环等待——对资源进行排序，然后按序申请资源
  *
  * @author chenpenghui
  * @date 2021-4-19
