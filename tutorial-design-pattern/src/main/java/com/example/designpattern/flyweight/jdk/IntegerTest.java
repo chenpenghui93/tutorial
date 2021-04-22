@@ -15,8 +15,10 @@ public class IntegerTest {
 
         // true 缓存 -128~127
         System.out.println(a == b);
+
         // false 缓存 -128~127
         System.out.println(c == d);
+
         // true 自动拆箱
         System.out.println(e == f);
     }
