@@ -14,6 +14,6 @@ public class SessionControllerB {
 
     @GetMapping("/sessionB")
     public String doSomething(HttpSession session) {
-        return session.getAttribute("x").toString();
+        return session.getAttribute("x").toString() + "_" + session.getId();
     }
 }

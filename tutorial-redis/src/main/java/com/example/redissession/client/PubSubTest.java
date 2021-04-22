@@ -1,4 +1,4 @@
-package com.example.javabasic.sample.middleware.redis;
+package com.example.redissession.client;
 
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.pubsub.RedisPubSubListener;

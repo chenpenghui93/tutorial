@@ -7,3 +7,8 @@ spring:
     url: jdbc:mysql://localhost:3306/test?useSSH=false&serverTimezone=GMT%2B8
     username: root
     password: root
+  session:
+    store-type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
