@@ -33,6 +33,8 @@ public class LdapServiceSimpleTest {
         List<LdapUser> user = ldapService.getLdapUserList("xxx");
         System.out.println(user.size());
 
+//        JSONUtil.createJsonFile(JSONUtil.toJson(user),"D:/download", "user");
+
     }
 
     @Test
