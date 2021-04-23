@@ -36,6 +36,12 @@
             <version>1.0.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>6.0.2.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
