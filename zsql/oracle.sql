@@ -40,7 +40,7 @@ alter system kill session '547,36734';
 
 
 -----------------rollback data begin------------------------------
--- 查询sql执行历史确定回滚时间点
+-- 查询sql执行历史，确定回滚时间点
 select sql_text,last_load_time from v$sql where sql_text like '%update%' order by last_load_time desc;
 -- 将数据回滚至指定时间点
 alter table tableName enable row movement;
@@ -89,6 +89,7 @@ begin
 end;
 -----------------oracle loop example end---------------------------------
 
+
 -----------------indices start---------------------------------
 -- 默认B树索引，适用于基数较大时
 create index idx_su_login_name on sys_user('login_name');
@@ -97,5 +98,19 @@ create bitmap index idx_sys_user_list1 on sys_user('login_name');
 drop index index_sys_user_list;
 -- 查询索引生效状态
 select status from user_indexes where index_name = 'idx_su_login_name'
-
 -----------------indices end---------------------------------
+
+
+-----------------built-in function start---------------------------------
+-- 数字函数
+-- 字符函数
+-- 日期函数
+-- 复杂单行函数
+
+-- instr：返回t.ROUTER中从索引1处开始第2次出现'/'的位置，例 /tableListApp/tabledata → tabledata
+select substr(t.ROUTER,instr(t.ROUTER, '/', 1, 2)+1), t.ROUTER from SYS_MENU t;
+
+-- 分析聚合函数
+
+
+-----------------built-in function end---------------------------------
