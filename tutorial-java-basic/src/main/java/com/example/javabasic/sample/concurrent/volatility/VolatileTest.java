@@ -10,7 +10,10 @@ package com.example.javabasic.sample.concurrent.volatility;
  */
 public class VolatileTest {
 
-    boolean started = false;
+    /**
+     * 使用volatile来解决共享变量的可见性
+     */
+    private volatile boolean started = false;
 
     public static void main(String[] args) {
 
