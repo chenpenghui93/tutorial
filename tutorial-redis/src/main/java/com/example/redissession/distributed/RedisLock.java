@@ -77,10 +77,10 @@ public class RedisLock {
 
             if (nativeConnection instanceof JedisCommands) {
                 JedisCommands jedis = (JedisCommands) nativeConnection;
-                String result = jedis.set(lockKey, clientId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, seconds);
-                if (LOCK_SUCCESS.equals(result)) {
-                    return true;
-                }
+//                String result = jedis.set(lockKey, clientId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, seconds);
+//                if (LOCK_SUCCESS.equals(result)) {
+//                    return true;
+//                }
             }
             return false;
         });
