@@ -1,68 +1,30 @@
-- Spring Boot
+### 微服务技术选型
+- 服务注册与发现 spring-cloud-starter-alibaba-nacos-config
+- 服务网关 spring-cloud-starter-gateway
+- 服务调用 spring-cloud-starter-openfeign
+- 服务熔断、降级，服务限流 spring-cloud-starter-alibaba-sentinel
+- 负载均衡 spring-cloud-starter-netflix-ribbon
 
-  ```xml
-  <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-      <version>2.2.5.RELEASE</version>
-  </dependency>
-  ```
-
-- 服务注册与发现
-
-  ```xml
-  <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-      <version>2.2.1.RELEASE</version>
-  </dependency>
-  
-  <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-      <version>2.2.1.RELEASE</version>
-  </dependency>
-  ```
-
-- 服务网关
-
-  ```xml
-  <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-gateway</artifactId>
-      <version>2.2.2.RELEASE</version>
-  </dependency>
-  ```
-
-- 服务调用
-
-  ```xml
-  <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
-      <version>2.2.2.RELEASE</version>
-  </dependency>
-  ```
-
-- 服务降级、熔断，服务限流
-
-  ```xml
-  <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-      <version>2.2.1.RELEASE</version>
-  </dependency>
-  ```
-
-- 负载均衡
-
-  ```xml
-  <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-      <version>2.2.2.RELEASE</version>
-  </dependency>
-  ```
-
-  
+### 微服务架构--幂等问题
+- 定义：任意多次执行所产生的影响均与一次执行的影响相同
+- 常见场景：
+  - 网络波动
+  - 分布式消息消费
+  - 用户重复操作
+  - 未关闭的重试机制
+- 常见问题
+  - 电商超卖现象
+    - 直接对读操作加显示锁
+    - 有条件有选择的在读操作上加锁
+  - 重复转账、扣款或付款
+  - 重复增加积分、优惠券
+- 解决方案
+  - 全局唯一ID：根据业务的操作和内容生成一个全局id，在执行操作前先根据全局唯一id是否存在，来判断当前操作是否已经执行
+              如果不存在，则执行操作并存储全局唯一id；如果存在则表示该方法已经执行
+  - 去重表：适用于在业务中有唯一标识的插入场景中。以订单支付场景为例，假设一个订单只支付一次，订单id可作为唯一标识，
+           创建一张去重表，把订单id作为唯一索引；
+           具体实现时把创建支付单据和写入去重表放在同一个事务中，如果重复创建，数据库会抛出唯一约束异常，操作就会回滚。
+  - 插入或更新：例如关联商品品类，商品id+品类id构成唯一索引
+  - 多版本控制：增加版本号字段进行标识
+  - 状态机控制：状态机流转
 
