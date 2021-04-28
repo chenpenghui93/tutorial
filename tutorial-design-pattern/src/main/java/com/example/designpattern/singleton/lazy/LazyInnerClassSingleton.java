@@ -12,7 +12,9 @@ public class LazyInnerClassSingleton {
         }
     }
 
-    //Java机制规定，内部类LazyHolder只有在getInstance()方法第一次被调用的时候才会被加载，而且其加载过程是线程安全的
+    /**
+     * Java机制规定：内部类LazyHolder只有在getInstance()方法第一次被调用的时候才会被加载，而且其加载过程是线程安全的
+     */
     public static final LazyInnerClassSingleton getInstance() {
         return LazyHolder.LAZY;
     }

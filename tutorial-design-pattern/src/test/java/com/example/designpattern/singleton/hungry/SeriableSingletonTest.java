@@ -13,8 +13,8 @@ import java.io.ObjectOutputStream;
 public class SeriableSingletonTest {
     public static void main(String[] args) {
 
-        SeriableSingleton s1;
-        SeriableSingleton s2 = SeriableSingleton.getInstance();
+        SerializableSingleton s1;
+        SerializableSingleton s2 = SerializableSingleton.getInstance();
 
         FileOutputStream fos;
         try {
@@ -26,7 +26,7 @@ public class SeriableSingletonTest {
 
             FileInputStream fis = new FileInputStream("SeriableSingleton.obj");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            s1 = (SeriableSingleton) ois.readObject();
+            s1 = (SerializableSingleton) ois.readObject();
             ois.close();
 
             System.out.println(s1);
