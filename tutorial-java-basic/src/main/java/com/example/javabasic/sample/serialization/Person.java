@@ -33,24 +33,6 @@ public class Person implements Serializable {
         this.age = age;
     }
 
-    public static void main(String[] args) throws Exception {
-
-        // 如果不实现Serializable接口，则在写对象时会抛出java.io.NotSerializableException
-        // 使用ObjectOutputStream实现对象序列化
-        FileOutputStream op = new FileOutputStream(File.separator + "a.txt");
-        ObjectOutputStream ops = new ObjectOutputStream(op);
-        ops.writeObject(new Person("vvv", 1));
-        ops.close();
-
-        // 使用ObjectInputStream实现对象反序列化
-        InputStream is = new FileInputStream(File.separator + "a.txt");
-        ObjectInputStream ois = new ObjectInputStream(is);
-        Person person = (Person) ois.readObject();
-        System.out.println(person);
-        ois.close();
-
-    }
-
     public String getName() {
         return name;
     }
@@ -73,5 +55,23 @@ public class Person implements Serializable {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        // 如果不实现Serializable接口，则在写对象时会抛出java.io.NotSerializableException
+        // 使用ObjectOutputStream实现对象序列化
+        FileOutputStream op = new FileOutputStream(File.separator + "a.txt");
+        ObjectOutputStream ops = new ObjectOutputStream(op);
+        ops.writeObject(new Person("vvv", 1));
+        ops.close();
+
+        // 使用ObjectInputStream实现对象反序列化
+        InputStream is = new FileInputStream(File.separator + "a.txt");
+        ObjectInputStream ois = new ObjectInputStream(is);
+        Person person = (Person) ois.readObject();
+        System.out.println(person);
+        ois.close();
+
     }
 }
