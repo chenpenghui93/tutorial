@@ -11,3 +11,8 @@ ioc/aop
 http get post put delete  
 cookie session  
 sql基础
+
+
+项目难题是如何解决的
+- https://www.secn.net/article/1103175.html
+ 
