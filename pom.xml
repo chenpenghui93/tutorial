@@ -21,6 +21,7 @@
         <module>tutorial-algorithm</module>
         <module>tutorial-design-pattern</module>
         <module>tutorial-java-basic</module>
+        <module>tutorial-rabbitmq</module>
         <module>tutorial-redis</module>
         <module>tutorial-spring-security</module>
     </modules>
