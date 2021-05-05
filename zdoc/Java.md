@@ -1,6 +1,27 @@
 ### 基础 Basic
 - 如何理解面向对象思想  
   - 一切皆对象，对象有属性和方法，通过操纵对象的方法改变对象的属性来实现想要的结果  
+- 抽象类和接口的区别
+  - 设计层面
+    - 抽象是对类的抽象，是一种模板设计；接口是对行为的抽象，是一种行为的规范
+  - 语法层面
+    - 抽象类可以有默认的方法实现，接口不存在方法实现(jdk1.8之前)
+    - 抽象类使用extends关键字继承，如果子类不是抽象类需要提供全部实现；接口使用implements关键字实现，提供接口中所有声明方法的实现
+    - 抽象类可以有构造器，接口不能有构造器
+    - 抽象方法可以用public/protected/default修饰符，接口默认且仅能使用public修饰符
+- 基础类型
+  - 字符型
+    - char 2byte
+  - 整型
+    - byte 1byte
+    - short 2byte
+    - int 4byte
+    - long 8byte
+  - 浮点型
+    - float 4byte
+    - double 8byte
+  - 布尔型
+    - boolean 1byte
 - `equals()`与 `==`的区别  
   - 默认情况下，从Object继承的`equals()`与`==`是完全等价的，二者比较的都是对象的内存地址
   - 可以重写业务对象的`equals()`，使其按照需要的方式进行比较，这种时候`equals()`一般比较的就是对象的内容，而不是对象的内存地址了  
@@ -28,7 +49,6 @@
     - 都可以对类进行加载
     - Class.forName除了将类的.class文件加载到jvm中以外，还会对类进行解释，执行类中的static代码块
     - ClassLoader只会将.class文件加载到jvm中，不会执行static中的内容，在newInstance时才会执行static代码块
-
 
 ### 集合类 Collection
 - List、Set、Queue继承自Collection(单个元素的集合)，Map(键值对的集合)继承自Object
@@ -80,6 +100,14 @@
 ### 并发与多线程 Thread
 
 ### 虚拟机 JVM
+- 性能调优监控工具
+  - jps 查看所有的JVM进程，包括进程ID、进程启动路径
+  - jstack 观察JVM中当前所有线程的运行情况和线程当前状态
+  - jstat 利用JVM内建的指令对Java应用程序的资源和性能进行实时的命令行的监控，包括进程classloader/compiler/gc
+  - jmap 观察进程运行中的JVM物理内存的占用情况，该进程内所有对象的情况
+  - jinfo 观察进程运行环境参数，包括Java System属性和JVM命令行参数
+  - hprof 观察CPU使用率，统计堆内存的使用情况
+
 
 #### 内存结构
 - 易混淆概念
@@ -152,7 +180,7 @@
   - 各种资源连接包括数据库连接、网络连接、IO连接等没有显式调用close关闭，不被GC回收导致内存泄漏
   - 监听器的使用，在释放对象的时候没有对应删除监听器
   
-- 引用 `示例 https://www.jianshu.com/p/e5364c05cc80`
+- 引用类型 `示例 https://www.jianshu.com/p/e5364c05cc80`
   - 强引用 "Object obj = new Object()" 只要强引用还存在，垃圾收集器就永远不会回收掉被引用的对象
   - 软引用 有用但非必须的对象。通过SoftwareReference实现软引用
   - 弱引用 非必需对象，强度比软引用更弱一些。通过WeakReference实现弱引用
