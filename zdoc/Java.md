@@ -4,14 +4,71 @@
 - `equals()`与 `==`的区别  
   - 默认情况下，从Object继承的`equals()`与`==`是完全等价的，二者比较的都是对象的内存地址
   - 可以重写业务对象的`equals()`，使其按照需要的方式进行比较，这种时候`equals()`一般比较的就是对象的内容，而不是对象的内存地址了  
+- String、StringBuilder、StringBuffer的异同
+  - 都可以用来操作字符串
+  - 操作少量字符串可以使用String
+  - 单线程操作大量字符串使用StringBuilder
+  - 多线程操作大量字符串使用StringBuffer
+- 关键字作用
+  - static
+  - final
+    - 可以修饰类、方法、变量
+    - 被final修饰的类不能被继承，即不能拥有子类
+    - 被final修饰的方法不能被重写
+    - 被final修饰的类属性、对象属性、形参、局部变量，都需要进行初始化操作
+  - synchronized
+  - volatile
+  - transient
+- String类为什么是final的
+  - 实现字符串池 字符串池的实现可以在运行时节约很多堆空间，因为不同的字符串变量可以指向池中的同一个字符串
+  - 线程安全 因为字符串不可变，所以是多线程安全的，同一个字符串实例可以被多个线程共享
+  - HashCode不可变 因为字符串不可变，所以在创建它的时候HashCode就被缓存了，不需要重新计算，效率更高
+- Reflection 反射
+  - Class.forName与ClassLoader的区别
+    - 都可以对类进行加载
+    - Class.forName除了将类的.class文件加载到jvm中以外，还会对类进行解释，执行类中的static代码块
+    - ClassLoader只会将.class文件加载到jvm中，不会执行static中的内容，在newInstance时才会执行static代码块
+
 
 ### 集合类 Collection
-- ArrayList 底层使用 定长数组 实现，允许空值和重复元素
-- LinkedList 底层使用 双向链表 实现，允许空值和重复值
-- Vector 数组 Synchronized保证线程安全
-- CopyOnWriteArrayList 数组 线程安全的ArrayList Synchronized修饰方法 对读不加锁、对写加锁
-- HashMap 底层使用 数组+链表+红黑树(jdk1.8+) 实现
-- LinkedHashMap 
+- List、Set、Queue继承自Collection(单个元素的集合)，Map(键值对的集合)继承自Object
+- List主要特性是有序性和元素可控性，主要实现类有ArrayList/LinkedList
+  - ArrayList 底层使用数组实现；查询快，增删慢；允许空值和重复元素
+  - LinkedList 底层使用双向链表实现；查询慢，增删快；允许空值和重复值
+  - Vector 底层使用数组实现，Synchronized保证线程安全
+  - CopyOnWriteArrayList 底层使用数组实现，线程安全的ArrayList，Synchronized修饰方法，对读不加锁、对写加锁
+- Set主要特性是唯一性，主要实现类有HashSet/LinkedHashSet/TreeSet
+  - HashSet 为快速查找元素而设计，存入HashSet的元素必须定义HashCode方法；可以理解为HashMap的包装类
+  - LinkedHashSet 具备HashSet的查找速度且通过链表保证了元素的插入顺序，迭代时是有序的，存入元素必须定义HashCode方法
+  - TreeSet 底层使用红黑树实现，实质是TreeMap的包装类，元素不可为mull；存入TreeSet的元素必须是实现Comparable接口
+- Queue主要特性就是队列，主要实现类为LinkedList/PriorityQueue
+  - Dequeue是Queue的子接口，通用的双端队列，有明确的在头或尾进行查看、添加或删除的方法
+  - 非阻塞队列
+    - LinkedList 保证了按照元素的插入顺序进行操作
+    - PriorityQueue 按照优先级进行插入读取操作，元素可以通过实现Comparable接口来保证优先顺序
+    - ConcurrentLinkedQueue 底层使用链表实现，线程安全
+    - ArrayDequeue 底层使用循环数组实现，效率更高些
+  - 阻塞队列 线程阻塞时不是直接添加或删除元素，而是等到有空间或者元素时才进行操作
+    - ArrayBlockingQueue 基于数组的有界队列
+    - LinkedBlockingQueue 基于链表的无界队列
+    - PriorityBlockingQueue 基于优先级的无界队列
+    - DelayQueue 基于时间优先级的无界队列
+    - SynchronousQueue 内部没有容器的队列，独有的线程-配对通信机制
+- Map主要特性是维护键值对关联和查找特性，主要实现类有Hashtable/HashMap/LinkedHashMap/TreeMap
+  - Hashtable 类似HashMap，键值均不允许为null，线程安全
+  - HashMap 
+    - 底层使用 数组+链表+红黑树(jdk1.8+) 实现；只能出现一个key为null，可以出现多个value为null；线程不安全
+    - 为什么链表长度大于8会转为红黑树
+      - 链表取数需要遍历，复杂度为O(n)；红黑树复杂度为O(logN)
+      - 树节点的大小是链表节点大小的两倍，所以容器中包含足够的节点保证使用才用它
+      - 为什么是8而不是9、10——基于统计的结果
+    - 为什么是2倍扩容
+      - 存储位置计算式`(n-1)&hash(key)`，位运算是可以充分散列，避免不必要的哈希冲突
+      - 扩容后，元素要么在原位置，要么在原位置再移动2次幂的位置，且链表顺序不变
+   - LinkedHashMap 类似HashMap，键值均可以为null；有序性为插入顺序或LRU次序(Last Recently Use, 最近最少使用)，
+                   有序是因为每个元素还倍加入到了一个双向链表中
+  - TreeMap 底层使用红黑树实现，查看键值对时会被排序，存入的元素必须实现Comparable接口，键不允许为null，值可以为null；
+            如果键为枚举类型，可以使用专门的EnumMap
 
 
 ### 输入/输出 I/O
