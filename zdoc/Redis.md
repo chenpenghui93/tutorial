@@ -22,15 +22,15 @@
         - Eventually Consistent 最终一致性
       - 支持海量数据的存储和高并发的高效读写
       - 支持分布式，能够对数据进行分片存储，扩缩容简单
-    - NoSQL数据库 https://hostingdata.co.uk/nosql-database/
+    - NoSQL数据库 [https://hostingdata.co.uk/nosql-database/](https://hostingdata.co.uk/nosql-database/)
 - Redis特性
   - 更丰富的数据类型
   - 支持多种编程语言
   - 功能丰富：持久化机制、内存淘汰策略、事务、发布订阅、pipline、lua
   - 支持集群、分布式
 - 安装启动 
-  - 服务端 https://gper.club/articles/7e7e7f7ff3g5bgccg66
-  - 客户端工具 https://rdm.dev/
+  - 服务端 [https://gper.club/articles/7e7e7f7ff3g5bgccg66](https://gper.club/articles/7e7e7f7ff3g5bgccg66)
+  - 客户端工具 [https://rdm.dev/](https://rdm.dev/)
 - 基本数据类型
  - String
    - 存储类型
