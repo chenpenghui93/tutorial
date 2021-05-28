@@ -6,6 +6,9 @@ package com.example.javabasic.sample.concurrent.thread;
  */
 public class ThreadDemo implements Runnable {
     public static void main(String[] args) {
+
+        // run()是直接调用实例方法
+        // start()是由JVM中的Thread.cpp通知os进行线程创建、CPU调度进而回调run方法
         new Thread(new ThreadDemo()).start();
         System.out.println("main");
     }
