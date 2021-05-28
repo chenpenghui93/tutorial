@@ -93,11 +93,11 @@
         </dependency>
 
         <!-- 测试starter -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.example</groupId>
             <artifactId>my-first-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <!-- easy-rules 规则引擎 -->
         <dependency>

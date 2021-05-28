@@ -1,6 +1,5 @@
 package com.example.javabasic.sample;
 
-import com.example.HelloWorldService;
 import com.google.common.base.CaseFormat;
 
 import java.util.*;
@@ -218,10 +217,10 @@ public class SimpleTest {
         System.out.println("set1.addAll(set2): " + set1);
     }
 
-    private static void myFirstStarterTest() {
-        HelloWorldService service = new HelloWorldService();
-        service.hello();
-    }
+//    private static void myFirstStarterTest() {
+//        HelloWorldService service = new HelloWorldService();
+//        service.hello();
+//    }
 
     private static void replaceTest() {
         Map map = new HashMap<>();
