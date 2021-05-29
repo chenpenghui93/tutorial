@@ -3,8 +3,8 @@ package com.example.javabasic.sample.concurrent.thread;
 import java.util.concurrent.TimeUnit;
 
 /**
- * jps 查看java进程
- * jstack 17356 查看java进程日志
+ * jps 显示当前所有java进程pid
+ * jstack 17356 通过jstack pid可以打印指定java进程id的堆栈信息，进而查看线程运行状态
  *
  * @author chenpenghui
  * @date 2021-5-27
