@@ -203,11 +203,11 @@ public class SimpleTest {
         set1.removeAll(set2);
         System.out.println("set1.removeAll(set2): " + set1);
 
-        // []
+        // [] 集合求交集，从set1中 移除 所有set2中不包含的元素
         set1.retainAll(set2);
         System.out.println("set1.retainAll(set2): " + set1);
 
-        // [b]
+        // [b] 集合求交集，从set1中 移除 所有set2中不包含的元素
         set1.add("b");
         set1.retainAll(set2);
         System.out.println("set1.retainAll(set2): " + set1);
