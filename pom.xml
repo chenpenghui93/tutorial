@@ -24,6 +24,7 @@
         <module>tutorial-rabbitmq</module>
         <module>tutorial-redis</module>
         <module>tutorial-spring-security</module>
+        <module>tutorial-oss</module>
     </modules>
 
     <properties>
