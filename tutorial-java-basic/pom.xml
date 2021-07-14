@@ -213,6 +213,14 @@
             <artifactId>spring-data-redis</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.17.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
