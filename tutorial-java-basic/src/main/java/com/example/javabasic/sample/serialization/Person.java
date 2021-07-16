@@ -1,6 +1,8 @@
 package com.example.javabasic.sample.serialization;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 序列化是处理对象流的一种机制
@@ -30,6 +32,9 @@ public class Person implements Serializable {
      * 如果某些数据不需要序列化，可以在字段前面加上关键字transient
      */
     transient private Integer age;
+
+    public Person() {
+    }
 
     public Person(String name, Integer age) {
         this.name = name;
@@ -62,18 +67,27 @@ public class Person implements Serializable {
 
     public static void main(String[] args) throws Exception {
 
+        // 构造数据
+        List<Person> personList = new ArrayList<>();
+        for (int i=0; i<5; i++) {
+            Person person = new Person();
+            person.setName("name" + i);
+            person.setAge(i);
+            personList.add(person);
+        }
+
         // 如果不实现Serializable接口，则在写对象时会抛出java.io.NotSerializableException
         // 使用ObjectOutputStream实现对象序列化
         FileOutputStream op = new FileOutputStream(File.separator + "a.txt");
         ObjectOutputStream ops = new ObjectOutputStream(op);
-        ops.writeObject(new Person("vvv", 1));
+        ops.writeObject(personList);
         ops.close();
 
         // 使用ObjectInputStream实现对象反序列化
         InputStream is = new FileInputStream(File.separator + "a.txt");
         ObjectInputStream ois = new ObjectInputStream(is);
-        Person person = (Person) ois.readObject();
-        System.out.println(person);
+        List<Person> personList1 = (List<Person>) ois.readObject();
+        System.out.println(personList1);
         ois.close();
 
     }
