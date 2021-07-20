@@ -1,7 +1,11 @@
 package com.example.javabasic.sample;
 
 import com.google.common.base.CaseFormat;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.model.ZipParameters;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +16,15 @@ import java.util.regex.Pattern;
  */
 public class SimpleTest {
 
-    public static void main(String[] args) {
-        System.out.println(reverse("123"));
+    public static void main(String[] args) throws Exception {
+
+        File file = new File("C:\\Users\\Yuanbao\\Downloads\\popularize_imei.zip");
+        List<File> fileList = new ArrayList<>();
+        fileList.add(file);
+
+        ZipFile zipFile = new ZipFile("D:/splitTest.zip");
+        zipFile.createSplitZipFile(fileList, new ZipParameters(), true, 5 * 1024 * 1024);
+
     }
 
     /**
