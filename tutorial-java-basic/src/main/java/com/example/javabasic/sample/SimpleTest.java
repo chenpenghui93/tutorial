@@ -4,11 +4,12 @@ import com.google.common.base.CaseFormat;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @Author cph
@@ -17,14 +18,41 @@ import java.util.regex.Pattern;
 public class SimpleTest {
 
     public static void main(String[] args) throws Exception {
+        String s = zipMultiFile("D:/tmp/1/", "D:/tmp/2/", "test.zip");
+        System.out.println(s);
 
-        File file = new File("C:\\Users\\Yuanbao\\Downloads\\popularize_imei.zip");
-        List<File> fileList = new ArrayList<>();
-        fileList.add(file);
+    }
 
-        ZipFile zipFile = new ZipFile("D:/splitTest.zip");
-        zipFile.createSplitZipFile(fileList, new ZipParameters(), true, 5 * 1024 * 1024);
-
+    public static String zipMultiFile(String filePath, String zipPath, String originalName) {
+        try {
+            File fileDir = new File(filePath);
+            File zipDir = new File(zipPath);
+            if (!zipDir.exists()) {
+                zipDir.mkdirs();
+            }
+            String fileName = originalName.substring(0, originalName.lastIndexOf("."));
+            InputStream input;
+            if (fileDir.exists()) {
+                File[] files = fileDir.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    String zipFileName = fileName + i + ".zip";
+                    File zipFile = new File(zipDir, zipFileName);
+                    ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(zipFile));
+                    input = new FileInputStream(files[i]);
+                    zipOut.putNextEntry(new ZipEntry(files[i].getName()));
+                    int temp;
+                    while ((temp = input.read()) != -1) {
+                        zipOut.write(temp);
+                    }
+                    input.close();
+                    zipOut.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//            log.error("FileUtil#zipMultiFile异常: {}", e.getMessage(), e);
+        }
+        return zipPath + originalName;
     }
 
     /**
