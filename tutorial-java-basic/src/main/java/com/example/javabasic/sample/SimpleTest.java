@@ -1,8 +1,6 @@
 package com.example.javabasic.sample;
 
 import com.google.common.base.CaseFormat;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.model.ZipParameters;
 
 import java.io.*;
 import java.util.*;
@@ -18,12 +16,13 @@ import java.util.zip.ZipOutputStream;
 public class SimpleTest {
 
     public static void main(String[] args) throws Exception {
-        String s = zipMultiFile("D:/tmp/1/", "D:/tmp/2/", "test.zip");
-        System.out.println(s);
+        List<String> pathList = zipSeparateFile("D:/tmp/1/", "D:/tmp/2/", "test.zip");
+        System.out.println(pathList);
 
     }
 
-    public static String zipMultiFile(String filePath, String zipPath, String originalName) {
+    public static List<String> zipSeparateFile(String filePath, String zipPath, String originalName) {
+        List<String> pathList = new ArrayList<>();
         try {
             File fileDir = new File(filePath);
             File zipDir = new File(zipPath);
@@ -46,13 +45,14 @@ public class SimpleTest {
                     }
                     input.close();
                     zipOut.close();
+                    pathList.add(zipPath + zipFileName);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
 //            log.error("FileUtil#zipMultiFile异常: {}", e.getMessage(), e);
         }
-        return zipPath + originalName;
+        return pathList;
     }
 
     /**
