@@ -9,6 +9,14 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * @description: protobuf序列化、反序列化
+ * Protocol buffers 用于序列化结构化数据的一种机制，跨语言、跨平台
+ * 官网 https://developers.google.com/protocol-buffers
+ * 使用：
+ * 1、下载安装配置环境变量 https://github.com/protocolbuffers/protobuf/releases/
+ * 2、定义.proto文件
+ * 3、生成对应语言的解析类
+ * 4、添加maven依赖 protobuf-java
+ *
  * @author: cph
  * @date: 2021/7/13 16:30
  */
