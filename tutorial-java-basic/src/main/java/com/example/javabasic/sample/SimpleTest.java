@@ -1,6 +1,8 @@
 package com.example.javabasic.sample;
 
 import com.google.common.base.CaseFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -11,6 +13,9 @@ import java.util.regex.Pattern;
  * @Date 2020/3/25
  */
 public class SimpleTest {
+
+    // 等价于使用Lombok的@Slf4j
+    private static final Logger log = LoggerFactory.getLogger(SimpleTest.class);
 
     public static void main(String[] args) throws Exception {
     }
