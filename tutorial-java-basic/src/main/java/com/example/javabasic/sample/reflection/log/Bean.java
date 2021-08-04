@@ -3,6 +3,8 @@ package com.example.javabasic.sample.reflection.log;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @description: 测试Bean
  * @author: cph
@@ -19,4 +21,7 @@ public class Bean {
 
     @ForUpdate(filedName = "年龄")
     private Integer age;
+
+    @ForUpdate(filedName = "日期")
+    private Date date;
 }

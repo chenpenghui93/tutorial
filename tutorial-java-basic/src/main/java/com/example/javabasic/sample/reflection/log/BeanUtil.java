@@ -1,6 +1,9 @@
 package com.example.javabasic.sample.reflection.log;
 
+import com.example.javabasic.utils.DateUtil;
+
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -21,12 +24,20 @@ public class BeanUtil {
                     Object oldValue = field.get(oldBean);
                     if (!Objects.equals(newValue, oldValue)) {
                         sb.append(field.getAnnotation(ForUpdate.class).filedName());
-                        sb.append(", 变更前:");
-                        sb.append("[" + oldValue + "]");
-                        sb.append(" 变更后:");
-                        sb.append("[" + newValue + "]");
-                        sb.append("\n");
-                        sb.append("<br>");
+                        sb.append(", 变更前:[");
+
+                        if (field.getType() == Date.class) {
+                            sb.append(DateUtil.dateToString((Date) oldValue, DateUtil.DEFAULT_DATE_FORMAT));
+                        } else {
+                            sb.append(oldValue);
+                        }
+                        sb.append("], 变更后:[");
+                        if (field.getType() == Date.class) {
+                            sb.append(DateUtil.dateToString((Date) newValue, DateUtil.DEFAULT_DATE_FORMAT));
+                        } else {
+                            sb.append(newValue);
+                        }
+                        sb.append("]<br>");
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -47,6 +58,7 @@ public class BeanUtil {
                 .id(1L)
                 .name("lisi")
                 .age(22)
+                .date(new Date())
                 .build();
         String s = BeanUtil.getChangedFields(b1, b2);
         System.out.println(s);
