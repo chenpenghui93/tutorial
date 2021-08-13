@@ -1,6 +1,7 @@
 package com.example.javabasic.sample.reflection.log;
 
 import com.example.javabasic.utils.DateUtil;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -29,7 +30,12 @@ public class BeanUtil {
                         if (field.getType() == Date.class) {
                             sb.append(DateUtil.dateToString((Date) oldValue, DateUtil.DEFAULT_DATE_FORMAT));
                         } else {
-                            sb.append(oldValue);
+                            if (oldValue != null) {
+                                sb.append(oldValue);
+                            } else {
+                                sb.append("no data");
+                            }
+
                         }
                         sb.append("], 变更后:[");
                         if (field.getType() == Date.class) {
@@ -57,7 +63,7 @@ public class BeanUtil {
         Bean b2 = Bean.builder()
                 .id(1L)
                 .name("lisi")
-                .age(22)
+                .age(null)
                 .date(new Date())
                 .build();
         String s = BeanUtil.getChangedFields(b1, b2);
