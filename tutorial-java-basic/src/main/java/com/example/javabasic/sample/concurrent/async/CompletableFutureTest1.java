@@ -3,13 +3,13 @@ package com.example.javabasic.sample.concurrent.async;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * @description:
+ * @description: 异步调用
  * @author: cph
  * @date: 2021-8-12
  */
-public class CompletableFutureTest {
+public class CompletableFutureTest1 {
     public static void main(String[] args) throws Exception {
-        CompletableFuture<Double> cf = CompletableFuture.supplyAsync(CompletableFutureTest::fetchPrice);
+        CompletableFuture<Double> cf = CompletableFuture.supplyAsync(CompletableFutureTest1::fetchPrice);
         cf.thenAccept((result) -> System.out.println("price: " + result));
         cf.exceptionally( e -> {
             e.printStackTrace();
