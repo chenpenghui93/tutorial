@@ -186,40 +186,6 @@ public class SimpleTest {
         System.out.println(result);
     }
 
-    private static void collectionOperationTest() {
-        Set<String> set1 = new HashSet<>();
-        Set<String> set2 = new HashSet<>();
-
-        set1.add("a");
-        set1.add("b");
-        set1.add("c");
-        set2.add("b");
-        set2.add("c");
-        set2.add("d");
-
-        // [a]
-        set1.removeAll(set2);
-        System.out.println("set1.removeAll(set2): " + set1);
-
-        // [] 集合求交集，从set1中 移除 所有set2中不包含的元素
-        set1.retainAll(set2);
-        System.out.println("set1.retainAll(set2): " + set1);
-
-        // [b] 集合求交集，从set1中 移除 所有set2中不包含的元素
-        set1.add("b");
-        set1.retainAll(set2);
-        System.out.println("set1.retainAll(set2): " + set1);
-
-        // [b, c, d]
-        set1.addAll(set2);
-        System.out.println("set1.addAll(set2): " + set1);
-    }
-
-//    private static void myFirstStarterTest() {
-//        HelloWorldService service = new HelloWorldService();
-//        service.hello();
-//    }
-
     private static void replaceTest() {
         Map map = new HashMap<>();
         map.put("mobile", "[123456789]");
