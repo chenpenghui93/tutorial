@@ -23,10 +23,11 @@
         <module>tutorial-java-basic</module>
         <module>tutorial-rabbitmq</module>
         <module>tutorial-redis</module>
+        <module>tutorial-refactoring</module>
+        <module>tutorial-rocketmq</module>
         <module>tutorial-spring-security</module>
         <module>tutorial-oss</module>
         <module>tutorial-junit5</module>
-        <module>tutorial-refactoring</module>
     </modules>
 
     <properties>
