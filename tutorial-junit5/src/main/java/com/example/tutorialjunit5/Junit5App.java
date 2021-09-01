@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TutorialJunit5Application {
+public class Junit5App {
 
     public static void main(String[] args) {
-        SpringApplication.run(TutorialJunit5Application.class, args);
+        SpringApplication.run(Junit5App.class, args);
     }
 
 }

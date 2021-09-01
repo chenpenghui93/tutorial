@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
-class SecurityApplicationTests {
+class SecurityAppTests {
 
     @Autowired
     private SysUserService sysUserService;

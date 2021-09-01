@@ -1,10 +1,10 @@
-package com.example.tutorialrefactoring;
+package com.example.algorithm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TutorialRefactoringApplicationTests {
+class AlgorithmAppTests {
 
     @Test
     void contextLoads() {

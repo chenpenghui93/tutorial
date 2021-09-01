@@ -1,10 +1,10 @@
-package com.example.designpattern;
+package com.example.tutorialjunit5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TutorialDesignPatternApplicationTests {
+class Junit5AppTests {
 
     @Test
     void contextLoads() {

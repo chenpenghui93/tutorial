@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author cph
  */
 @SpringBootApplication
-public class TutorialDesignPatternApplication {
+public class DesignPatternApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(TutorialDesignPatternApplication.class, args);
+        SpringApplication.run(DesignPatternApp.class, args);
     }
 
 }

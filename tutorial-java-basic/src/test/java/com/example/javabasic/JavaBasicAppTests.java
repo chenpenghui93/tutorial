@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 
 @SpringBootTest
-class JavaBasicApplicationTests {
+class JavaBasicAppTests {
 
     @Autowired
     private Environment env;

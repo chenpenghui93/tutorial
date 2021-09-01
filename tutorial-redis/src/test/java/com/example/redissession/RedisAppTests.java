@@ -1,10 +1,10 @@
-package com.example.rabbitmq;
+package com.example.redissession;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TutorialRabbitmqApplicationTests {
+class RedisAppTests {
 
     @Test
     void contextLoads() {

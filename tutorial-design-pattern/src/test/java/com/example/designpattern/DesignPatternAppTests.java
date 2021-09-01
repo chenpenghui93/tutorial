@@ -1,10 +1,10 @@
-package com.example.algorithm;
+package com.example.designpattern;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AlgorithmApplicationTests {
+class DesignPatternAppTests {
 
     @Test
     void contextLoads() {

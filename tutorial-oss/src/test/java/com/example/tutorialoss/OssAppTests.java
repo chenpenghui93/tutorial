@@ -1,10 +1,10 @@
-package com.example.redissession;
+package com.example.tutorialoss;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RedisApplicationTests {
+class OssAppTests {
 
     @Test
     void contextLoads() {

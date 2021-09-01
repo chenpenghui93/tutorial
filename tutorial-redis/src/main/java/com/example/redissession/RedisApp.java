@@ -1,13 +1,13 @@
-package com.example.tutorialrefactoring;
+package com.example.redissession;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TutorialRefactoringApplication {
+public class RedisApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(TutorialRefactoringApplication.class, args);
+        SpringApplication.run(RedisApp.class, args);
     }
 
 }
