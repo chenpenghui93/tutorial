@@ -1,4 +1,4 @@
-# Git规范
+# Git
 
 ## 代码风格  
 - [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
