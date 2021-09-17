@@ -1,20 +1,14 @@
 # Git
-
-## 代码风格  
-- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-
-##   
 ```yaml
-# 前置条件(若使用Windows)
-- 提前安装Python3
-- Git Bash中执行`git config --global core.autocrlf true`
+# 远程分支信息
+git remote -v
 
-# 1、项目根目录下执行以下命令
-# macOS
-brew install pre-commit
-# Windows
-pip install pre-commit
+# 移除关联
+git remote remove origin
 
-# 2、项目根目录执行
-pre-commit install --install-hooks -t pre-push
+# 新增远程关联分支
+git remote add origin http://gitlab.xxx.com/dept-name/project-group/project-name.git
+
+# 强制推送
+git push -f -u origin main
 ```
