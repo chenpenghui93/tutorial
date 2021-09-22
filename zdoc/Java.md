@@ -1,4 +1,4 @@
-### 基础 Basic
+# 基础 Basic
 - 如何理解面向对象思想  
   - 一切皆对象，对象有属性和方法，通过操纵对象的方法改变对象的属性来实现想要的结果  
 - 抽象类和接口的区别
@@ -58,7 +58,7 @@
     - Class.forName除了将类的.class文件加载到jvm中以外，还会对类进行解释，执行类中的static代码块
     - ClassLoader只会将.class文件加载到jvm中，不会执行static中的内容，在newInstance时才会执行static代码块
 
-### 集合类 Collection
+## 集合类 Collection
 - List、Set、Queue继承自Collection(单个元素的集合)，Map(键值对的集合)继承自Object
 - List主要特性是有序性和元素可控性，主要实现类有ArrayList/LinkedList
   - ArrayList 底层使用数组实现；查询快，增删慢；允许空值和重复元素
@@ -99,15 +99,15 @@
             如果键为枚举类型，可以使用专门的EnumMap
 
 
-### 输入/输出 I/O
+## 输入/输出 I/O
 
-### 异常 Exception
+## 异常 Exception
 
-### 类加载 ClassLoader
+## 类加载 ClassLoader
 
-### 并发与多线程 Thread
+# 并发与多线程 Thread
 
-### 虚拟机 JVM
+# 虚拟机 JVM
 - 性能调优监控工具
   - jps 查看所有的JVM进程，包括进程ID、进程启动路径
   - jstack 观察JVM中当前所有线程的运行情况和线程当前状态
@@ -117,13 +117,13 @@
   - hprof 观察CPU使用率，统计堆内存的使用情况
 
 
-#### 内存结构
+## 内存结构
 - 易混淆概念
   - JVM内存结构，与Java虚拟机的运行时区域有关，方法区、堆、虚拟机栈、本地方法栈、程序计数器
   - Java内存模型，与Java的并发编程有关，多线程间的通信通过共享变量实现，每个线程在本地缓存一份共享变量的副本
   - Java对象模型，与Java对象在虚拟机中的表现形式有关
 
-#### 垃圾回收 GC  https://blog.csdn.net/justloveyou_/article/details/71216049
+## 垃圾回收 GC  https://blog.csdn.net/justloveyou_/article/details/71216049
 - Java中自动内存管理解决的问题
  - 给对象分配内存，回收分配给对象的内存；针对的内存区域是Java内存模型中的堆区
    - 哪些内存要回收
@@ -194,3 +194,11 @@
   - 弱引用 非必需对象，强度比软引用更弱一些。通过WeakReference实现弱引用
   - 虚引用 最弱的引用关系。通过PhantomReference实现虚引用
   
+# 开发规范
+- 比较判断时避免被比较的对象为空，可通过 使用常量执行equals方法、操作前先判空、使用Objects.equals() 等方式来解决
+- 判空时使用工具类提供的判空工具，推荐使用Apache Commons提供的StringUtils、CollectionUtils、MapUtils(代码统一)
+- pojo中禁止使用基本数据类型，必须使用包装类
+  数据库的查询结果可能为null，因为自动拆箱，用基本数据类型接收有空指针风险
+- 使用集合的addAll()方法时，必须对传入的list进行判空
+  该方法实现时直接调用传入的List的toArray()方法，若传入的值为空，必然会导致空指针异常
+- 
