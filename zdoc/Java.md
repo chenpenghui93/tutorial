@@ -195,10 +195,67 @@
   - 虚引用 最弱的引用关系。通过PhantomReference实现虚引用
   
 # 开发规范
-- 比较判断时避免被比较的对象为空，可通过 使用常量执行equals方法、操作前先判空、使用Objects.equals() 等方式来解决
-- 判空时使用工具类提供的判空工具，推荐使用Apache Commons提供的StringUtils、CollectionUtils、MapUtils(代码统一)
-- pojo中禁止使用基本数据类型，必须使用包装类
-  数据库的查询结果可能为null，因为自动拆箱，用基本数据类型接收有空指针风险
-- 使用集合的addAll()方法时，必须对传入的list进行判空
+## 避免潜在的空指针异常
+- 比较判断时避免被比较的对象为空，可通过 使用常量执行equals方法、操作前先判空、使用Objects.equals()等方式来解决   
+- 判空时使用工具类提供的判空工具，推荐使用Apache Commons提供的StringUtils、CollectionUtils、MapUtils(代码统一)  
+- pojo中禁止使用基本数据类型，必须使用包装类  
+  数据库的查询结果可能为null，因为自动拆箱，用基本数据类型接收有空指针风险  
+- 使用集合的addAll()方法时，必须对传入的list进行判空  
   该方法实现时直接调用传入的List的toArray()方法，若传入的值为空，必然会导致空指针异常
-- 
+## 尽量避免代码合并冲突
+- pojo使用lombok
+- 类新增方法时，新增的public方法加到public方法的最后、private方法前；新增的private方法放到整个类最后
+## 防止功能失效
+- 基于注解的声明式事务在本类调用时，不可直接调用  
+- 基于注解的声明式事务，指定rollbackFor = Exception.class
+## 数值精度问题
+- 使用BigDecimal时，禁止使用double类型的构造方法，使用String类型的构造方法，或使用valueOf()方法  
+- BigDecimal类型的值进行比较时，不可使用equals()方法，必须使用compareTo()方法  
+- pojo中的数据类型要与数据库中一致
+- 小心数值溢出  
+  精确到毫秒的时间数值常量，大部分情况下都是和Long类型的时间戳作对比的，所以请直接定义为Long，不要定义为Integer;
+  使用常量时，也应当小心这样潜在的坑，用之前先点进去看看到底是什么类型的常量，如果是Integer，就用Long类型的去乘它  
+- 严格禁止用==比较Integer  
+  如果最开始的时候比较的两个值在-128~127之内，但随着系统运行数值逐渐扩大，就会出现最开始运行的好好的，跑一段时间之后出现问题的情况
+## 避免其他人使用时的潜在风险
+- 枚举禁止写Setter，防止其他人误调用Setter方法导致不可预期的问题  
+- 将泛型写出来，其他人无须看代码也可清晰的知道返回的究竟是什么值  
+- Getter/Setter中禁止增加对请求值/返回值做修改的逻辑处理，避免其他人调用时不知道该Getter/Setter并不是单纯的设置/返回值  
+  如确有必要在pojo中进行逻辑处理，请写一个单独的Getter/Setter，而不可覆盖现有的Getter/Setter方法
+- 禁止返回Collections.emptyList()/Collections.EMPTY_LIST/Collections.singletonList()/Collections.emptyMap()/Collections.EMPTY_MAP
+  返回的是不可变的List，调用方很可能不知道它是不可变的List，一旦进行增/删/改元素操作，便会导致UnsupportedOperationException  
+- 禁止返回Arrays.asList()，避免调用方调用后增/删/改元素  
+  Arrays.asList()返回的是不可变的List，调用方很可能不知道它是不可变的List，一旦进行增/删/改元素操作，便会导致UnsupportedOperationException
+## 避免调用时新旧版本不兼容
+- 提供RPC服务或HTTP接口时，入参必须为pojo  
+- 若提供RPC服务或HTTP接口的入参不为pojo，增加入参时必须保留原入参的方法
+## 性能
+- 事务中不可执行网络请求  
+  网络请求的响应时间不可预估，若该次网络请求耗时过长，将导致执行时间过长的大事务，严重影响数据库性能  
+- 调用其他系统时进行同步数据等不关心结果的操作时，采取异步调用  
+- 循环体中做字符串拼接时，禁止直接进行String的+操作，必须使用StringBuilder/StringBuffer  
+  循环体的循环次数未知，若循环次数过大，则每次+操作都生成一个新的String，对内存消耗极大；如果是简单的拼接场景，例如2、3个固定字符串的拼接，
+  直接用+操作也无妨——编译器会将可以确定值的字符串拼接自己优化为StringBuilder的 
+- 使用StringBuilder/StringBuffer时，禁止使用其默认构造方法
+  StringBuilder/StringBuffer的默认构造方法创建大小为16的char数组，这个大小很可能不满足实际情况，造成在第一次append时就出现扩容，平白浪费内存资；
+  若在初始化时能知晓其第一个字符串，则使用String类型的构造方法，此时char数组的大小为构造方法中传入的String大小+16；
+  若在初始化时无法知晓其第一个字符串，则使用int类型的构造方法，指定合理的初始char数组大小
+- 遍历Map时，若要获取value，则使用entrySet()而非keySet()  
+## 代码风格
+- 禁止使用无意义的魔数，必须定义常量/枚举
+  若数值发生修改，不定义常量/枚举，则很可能漏了修改一些位置  
+- 强制类型转换时，必须instanceof，避免ClassCastException  
+- 库存消耗等场景，数值判断不要使用==0来做判断，避免因为并发原因导致值小于0  
+- 禁止吞异常，即catch住异常之后什么也不做  
+- JSON序列化、反序列化使用FastJson
+  如果项目中混用FastJson和Jackson（其实还有用Gson的），由于这些工具在一些特殊注解上存在差异，一旦交叉使用，自定义注解也必须使用两套
+- if/else等语句即使只有一行也不能省略{}
+  如果省略{}，一旦后续需要增加新的逻辑变为多行，就存在忘了再加上{}的可能，所以要在最开始就把{}加上，即使{}里只有一行  
+- 不要使用HttpURLConnection
+  HttpURLConnection采用流的方式读取远程数据，网络波动时存在读取不完整的可能。将费率表从oss中读取时出现过该问题，使用HttpURLConnection读取到的json文件不完整，导致系统启动失败
+  建议使用第三方工具类，如Apache HttpClient，提供的功能比HttpURLConnection更多，用起来也更方便
+## 日志
+- 打印日志时，打印的对象需要存在有意义的toString()方法  
+  若打印的对象未重写toString()方法，直接使用Object类的toString()方法打印内存地址，则该日志打印毫无意义
+- 打印日志时，{}占位符数量要和参数数量匹配  
+  推荐打印日志格式`log.info(LOG_NAME + "任务未完成，校验文件不存在, taskId:[{}], taskName:[{}]", id, taskName);`  
